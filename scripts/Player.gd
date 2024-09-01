@@ -95,9 +95,9 @@ func _on_Player_player_use_skill() -> void:
 func _shoot_bullet():
 	_before_shoot_bullet()
 	var bullet = PlayerBullet.instance()
+	bullet.position = position
 	bullet.velocity = Vector2(0, -1).normalized()
 	bullet.speed = 400
-	bullet.position = position
 	bullet.acceleration = 400
 	bullet.set_as_toplevel(true)
 	add_child(bullet)

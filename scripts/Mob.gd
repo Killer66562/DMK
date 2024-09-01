@@ -54,6 +54,5 @@ func _on_BulletTimer_timeout():
 
 
 func _on_CollisionArea_area_entered(area: Area2D) -> void:
-	print("test")
 	if area.is_in_group("player_bullet"):
 		on_damage(1)

@@ -6,13 +6,13 @@
 [ext_resource path="res://scenes/PlayerBullet.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scripts/CharacterArea.gd" type="Script" id=5]
 
-[sub_resource type="CircleShape2D" id=3]
+[sub_resource type="CircleShape2D" id=1]
 radius = 8.0
 
-[sub_resource type="CircleShape2D" id=1]
+[sub_resource type="CircleShape2D" id=2]
 radius = 12.0
 
-[sub_resource type="CircleShape2D" id=2]
+[sub_resource type="CircleShape2D" id=3]
 radius = 80.0
 
 [node name="Player" instance=ExtResource( 1 )]
@@ -27,13 +27,13 @@ texture = ExtResource( 2 )
 ]]
 
 [node name="CollisionShape2D" parent="CollisionArea" index="0"]
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 
 [node name="MLGArea" type="Area2D" parent="." index="3"]
 script = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MLGArea" index="0"]
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="SkillTimer" type="Timer" parent="." index="4"]
 
@@ -45,7 +45,7 @@ shape = SubResource( 1 )
 script = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SkillArea" index="0"]
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 [connection signal="player_die" from="." to="." method="_on_Player_player_die"]
 [connection signal="player_use_skill" from="." to="." method="_on_Player_player_use_skill"]
 [connection signal="timeout" from="SkillTimer" to="." method="_on_SkillTimer_timeout"]

@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scenes/Mob.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scripts/Boss1.gd" type="Script" id=2]
+[ext_resource path="res://assets/boss_1.png" type="Texture" id=3]
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -48, 2, 0, 0, 0, 0, -44, -26, 0, 0, 0, 0, -23, -40, 0, 0, 0, 0, -1, -46, 0, 0, 0, 0, 26, -42, 0, 0, 0, 0, 46, -29, 0, 0, 0, 0, 60, -2, 0, 0, 0, 0, 52, 36, 0, 0, 0, 0, 22, 44, 0, 0, 0, 0, 1, 44, 0, 0, 0, 0, -33, 35, 0, 0, 0, 0, -48, 2 )
+}
+
+[node name="Boss1" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="Sprite" parent="." index="1"]
+texture = ExtResource( 3 )
+
+[node name="SkillCooldownTimer" type="Timer" parent="." index="3"]
+one_shot = true
+
+[node name="SkillLastingTimer" type="Timer" parent="." index="4"]
+one_shot = true
+
+[node name="BulletSpawnPath" type="Path2D" parent="." index="5"]
+curve = SubResource( 1 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="BulletSpawnPath" index="0"]
+position = Vector2( -48, 2 )
+rotation = -1.4289
+
+[node name="ProgressBar" type="ProgressBar" parent="." index="6"]
+margin_left = -27.7187
+margin_top = -39.7051
+margin_right = 28.2813
+margin_bottom = -25.7051
+max_value = 20000.0
+step = 1.0
+value = 20000.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="timeout" from="SkillCooldownTimer" to="." method="_on_SkillCooldownTimer_timeout"]
+[connection signal="timeout" from="SkillLastingTimer" to="." method="_on_SkillLastingTimer_timeout"]
